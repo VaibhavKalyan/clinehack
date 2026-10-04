@@ -1,0 +1,2 @@
+import type { MetadataRoute } from 'next';
+export default function manifest(): MetadataRoute.Manifest { return { name: 'Knock — Welfare Navigator', short_name: 'Knock', description: 'A little guidance. A world of opportunity.', start_url: '/', display: 'standalone', background_color: '#f7f6f0', theme_color: '#173e33', icons: [{ src: '/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }] }; }

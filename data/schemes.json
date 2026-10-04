@@ -1,0 +1,279 @@
+[
+  {
+    "id": "pm-kisan",
+    "name": "PM-KISAN Samman Nidhi",
+    "description": "For eligible landholding farmer families. Land records, family definition, land acquisition conditions, tax, public employment, pension and professional exclusions are not modeled; ownership alone is insufficient.",
+    "benefit": "Official scheme page describes ₹6,000 per year in three instalments for approved families; confirm current entitlement.",
+    "source_url": "https://pmkisan.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Aadhaar/eKYC details",
+      "Bank account details",
+      "Land records and family details for official verification"
+    ],
+    "steps": [
+      "Read official exclusions before applying.",
+      "Use New Farmer Registration or seek help at a CSC/state agriculture office.",
+      "Complete eKYC and official land/family verification; track status on the portal."
+    ],
+    "rules": [
+      {
+        "field": "ownsLand",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "pm-sym",
+    "name": "Pradhan Mantri Shram Yogi Maan-dhan",
+    "description": "Entry ages 18–40 for unorganised workers with monthly income up to ₹15,000. Monthly income cannot be safely inferred from annual income. Taxpayer and EPFO/ESIC/NPS exclusions, occupation classification and contributions require official checking.",
+    "benefit": "Contributory pension scheme describing ₹3,000 monthly pension from age 60; contributions are required, not an immediate cash grant.",
+    "source_url": "https://maandhan.in/",
+    "last_verified": null,
+    "documents": [
+      "Ask CSC for current Aadhaar and savings/Jan Dhan account documentation requirements"
+    ],
+    "steps": [
+      "Check PM-SYM eligibility and contribution chart on Maandhan.",
+      "Confirm monthly income and excluded social-security coverage with a CSC.",
+      "Enroll only after reviewing contribution and auto-debit terms."
+    ],
+    "rules": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 40
+      }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nps-traders",
+    "name": "National Pension Scheme for Traders and Self-Employed Persons",
+    "description": "Entry ages 18–40 for eligible self-employed shop owners, retail traders and other vyaparis; annual business turnover must not exceed ₹1.5 crore. Turnover is not personal annual income. Business status, exclusions and contribution requirements are not modeled.",
+    "benefit": "Voluntary contributory scheme describing ₹3,000 monthly pension from age 60 with matching government contribution.",
+    "source_url": "https://maandhan.in/",
+    "last_verified": null,
+    "documents": [
+      "Ask CSC for identity, bank and business/turnover evidence required for this scheme"
+    ],
+    "steps": [
+      "Select NPS-Traders on the official Maandhan portal.",
+      "Verify business turnover, exclusions and contribution schedule with the service provider.",
+      "Complete enrollment and required contribution consent."
+    ],
+    "rules": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 40
+      }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "pmuy",
+    "name": "Pradhan Mantri Ujjwala Yojana",
+    "description": "Applicant must be an adult woman in an eligible deprived/poor household, without another LPG connection in the same household. Household deprivation and existing connections are not modeled.",
+    "benefit": "Official page describes a deposit-free LPG connection with first refill and stove; confirm availability and current terms with the distributor. No recurring subsidy amount is promised here.",
+    "source_url": "https://www.pmuy.gov.in/about.html",
+    "last_verified": null,
+    "documents": [
+      "KYC form",
+      "Ration card or accepted family-composition document; migrant declaration where applicable",
+      "Aadhaar of beneficiary and adult family members",
+      "Address proof",
+      "Bank account number and IFSC"
+    ],
+    "steps": [
+      "Read household eligibility and document alternatives on the official page.",
+      "Apply through an official oil-company link or nearby LPG distributor.",
+      "Distributor verifies household eligibility before issuing a connection."
+    ],
+    "rules": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female"
+      }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "pmsby",
+    "name": "Pradhan Mantri Suraksha Bima Yojana",
+    "description": "Entry screening ages 18–70. Bank account, consent to auto-debit, premium payment and insurer terms are not modeled. Existing disability is not itself an eligibility requirement.",
+    "benefit": "Official page describes accident cover of ₹2 lakh for death/permanent total disability and ₹1 lakh for partial disability, with ₹20 annual premium; confirm current policy terms.",
+    "source_url": "https://financialservices.gov.in/pradhan-mantri-suraksha-bima-yojana-pmsby",
+    "last_verified": null,
+    "documents": [
+      "Bank account details",
+      "Enrollment and auto-debit consent; ask bank for identity/nominee requirements"
+    ],
+    "steps": [
+      "Contact a participating bank or insurer.",
+      "Review covered accidents, exclusions, premium and renewal conditions.",
+      "Submit enrollment and auto-debit consent through the bank."
+    ],
+    "rules": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 70
+      }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "pmjjby",
+    "name": "Pradhan Mantri Jeevan Jyoti Bima Yojana",
+    "description": "Screening is for new enrollment at ages 18–50, not renewal of existing cover. Bank account, premium, consent, waiting periods and insurer terms are not modeled.",
+    "benefit": "Official page describes ₹2 lakh life cover and ₹436 annual premium; confirm current waiting-period, renewal and claim terms with the bank/insurer.",
+    "source_url": "https://financialservices.gov.in/pradhan-mantri-jeevan-jyoti-bima-yojana-pmjjby",
+    "last_verified": null,
+    "documents": [
+      "Bank account details",
+      "Enrollment and auto-debit consent; ask bank for identity/nominee requirements"
+    ],
+    "steps": [
+      "Ask a participating bank about new enrollment.",
+      "Review premium, waiting period, exclusions and renewal conditions.",
+      "Complete bank enrollment and consent; retain acknowledgment."
+    ],
+    "rules": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 50
+      }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "apy",
+    "name": "Atal Pension Yojana",
+    "description": "New enrollment ages 18–40. Citizenship, bank-account requirements, income-tax-related enrollment restrictions and contribution obligations require official checking and are not inferred from annual income.",
+    "benefit": "Contributory pension from age 60, with minimum monthly pension options ₹1,000–₹5,000 depending on contributions; not an immediate grant.",
+    "source_url": "https://financialservices.gov.in/atal-pension-yojana-apy",
+    "last_verified": null,
+    "documents": [
+      "Ask participating bank/post office for current identity, bank-account and nominee requirements"
+    ],
+    "steps": [
+      "Review official APY eligibility and tax-related enrollment restrictions.",
+      "Ask a participating bank/post office for the contribution schedule.",
+      "Choose an affordable pension option and complete authorized enrollment."
+    ],
+    "rules": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 40
+      }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "sukanya-samriddhi",
+    "name": "Sukanya Samriddhi Account",
+    "description": "Profile must describe the girl child, not her parent. Account opening is before age 10 (completed age 0–9). Guardian, residency, existing account and family account-limit conditions require checking.",
+    "benefit": "Government small-savings account funded by deposits, not a welfare cash payment. Official page describes ₹250 minimum and ₹1.5 lakh maximum deposit in a financial year; no current interest rate is asserted.",
+    "source_url": "https://www.nsiindia.gov.in/InternalPage.aspx?Id_Pk=89",
+    "last_verified": null,
+    "documents": [
+      "Ask authorized bank/post office for child birth certificate and guardian identity/address requirements"
+    ],
+    "steps": [
+      "Use the child’s completed age for this preliminary screening.",
+      "Check account limits and guardian/residency conditions with an authorized bank or post office.",
+      "Submit the opening form and required deposit after verification."
+    ],
+    "rules": [
+      {
+        "field": "age",
+        "op": "lte",
+        "value": 9
+      },
+      {
+        "field": "gender",
+        "op": "eq",
+        "value": "female"
+      }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "scss",
+    "name": "Senior Citizens’ Savings Scheme",
+    "description": "Normally age 60 or above. Certain retired civilian applicants can enter from age 55 and eligible retired defence personnel from age 50. Only the absolute minimum age is modeled to avoid excluding exception routes; ages 50–59 are not automatically eligible. Retirement, residency and deposit conditions require checking.",
+    "benefit": "Deposit-funded savings scheme, not a free pension. Official page describes a five-year account with periodic interest; verify applicable rate, limits and withdrawal rules.",
+    "source_url": "https://www.nsiindia.gov.in/InternalPage.aspx?Id_Pk=62",
+    "last_verified": null,
+    "documents": [
+      "Ask bank/post office for age, identity/address and applicable retirement evidence"
+    ],
+    "steps": [
+      "Confirm the normal age route or specific retirement exception.",
+      "Review deposit, interest and premature-closure terms at an authorized bank/post office.",
+      "Submit required evidence and account-opening deposit."
+    ],
+    "rules": [
+      {
+        "field": "age",
+        "op": "gte",
+        "value": 50
+      }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "pmjdy",
+    "name": "Pradhan Mantri Jan Dhan Yojana",
+    "description": "Basic banking access focused on unbanked people. Unbanked status, bank KYC and minor/guardian account rules are not represented; no blanket minimum age exclusion is imposed here.",
+    "benefit": "Basic Savings Bank Deposit account without a minimum balance requirement. Overdraft and RuPay insurance have separate conditions and are not guaranteed by this match.",
+    "source_url": "https://financialservices.gov.in/pradhan-mantri-jan-dhan-yojana-pmjdy",
+    "last_verified": null,
+    "documents": [
+      "Ask bank/Bank Mitra for accepted KYC documents and simplified-account alternatives"
+    ],
+    "steps": [
+      "Visit a bank branch or Bank Mitra.",
+      "Confirm unbanked status, KYC and any guardian requirements.",
+      "Request the appropriate basic account and review optional facilities separately."
+    ],
+    "rules": [],
+    "coverage": "partial"
+  }
+]

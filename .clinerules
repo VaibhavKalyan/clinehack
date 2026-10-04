@@ -1,0 +1,7 @@
+Use strict TypeScript. Keep shared contracts in lib/contracts.ts.
+Never decide eligibility in prompts or UI: call the deterministic rules engine.
+Never describe partial rules as official approval. Link official sources.
+Never fabricate verification dates. Unknown verification is null.
+Never log personal profiles, conversation text or API keys.
+Validate inputs at API and tool boundaries. No agent shell or filesystem tools.
+Run npm run check before handing off changes.
