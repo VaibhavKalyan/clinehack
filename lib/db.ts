@@ -21,6 +21,7 @@ export function getDb(): DatabaseSync {
       email TEXT NOT NULL UNIQUE,
       name TEXT NOT NULL,
       password_hash TEXT NOT NULL,
+      email_verified_at TEXT,
       created_at TEXT NOT NULL
     );
     CREATE TABLE IF NOT EXISTS sessions (
@@ -41,8 +42,29 @@ export function getDb(): DatabaseSync {
       updated_at TEXT NOT NULL,
       PRIMARY KEY (user_id, scheme_id)
     );
+    CREATE TABLE IF NOT EXISTS email_verifications (
+      token_hash TEXT PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      purpose TEXT NOT NULL DEFAULT 'verify_email',
+      expires_at TEXT NOT NULL,
+      created_at TEXT NOT NULL
+    );
+    CREATE INDEX IF NOT EXISTS idx_email_verifications_user
+      ON email_verifications (user_id, purpose);
   `);
+  migrate(db);
   return db;
+}
+
+/**
+ * Additive, idempotent migrations for databases created before a column/table
+ * existed. Fresh databases already contain these via the CREATE statements.
+ */
+function migrate(db: DatabaseSync): void {
+  const userCols = db.prepare('PRAGMA table_info(users)').all() as Array<{ name: string }>;
+  if (!userCols.some(c => c.name === 'email_verified_at')) {
+    db.exec('ALTER TABLE users ADD COLUMN email_verified_at TEXT');
+  }
 }
 
 export interface UserRow { id: number; email: string; name: string; password_hash: string }

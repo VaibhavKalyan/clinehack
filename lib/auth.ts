@@ -3,13 +3,16 @@
 // cookie. No conversation text or chat history is ever stored — only accounts
 // and the profile each user explicitly saves.
 
-import { randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
+import { createHash, randomBytes, scryptSync, timingSafeEqual } from 'node:crypto';
 import { getDb } from './db';
+import type { EmailPurpose } from './contracts';
 
 export const SESSION_COOKIE = 'knock_session';
 const SESSION_DAYS = 30;
+const VERIFY_TTL_MINUTES = 60 * 24; // 24h
 
 export interface SessionUser { id: number; name: string; email: string }
+interface UserRow { id: number; email: string; name: string; password_hash: string; email_verified_at: string | null }
 
 export function hashPassword(password: string): string {
   const salt = randomBytes(16).toString('hex');
@@ -26,8 +29,8 @@ export function verifyPassword(password: string, stored: string): boolean {
 }
 
 export function findUserByEmail(email: string) {
-  const row = getDb().prepare('SELECT id, email, name, password_hash FROM users WHERE email = ?').get(email);
-  return (row as undefined | { id: number; email: string; name: string; password_hash: string }) ?? null;
+  const row = getDb().prepare('SELECT id, email, name, password_hash, email_verified_at FROM users WHERE email = ?').get(email);
+  return (row as undefined | UserRow) ?? null;
 }
 
 export function createUser(email: string, name: string, password: string): SessionUser {
@@ -84,8 +87,8 @@ export const sessionCookieOptions = {
 };
 
 export function findUserById(id: number) {
-  const row = getDb().prepare('SELECT id, email, name, password_hash FROM users WHERE id = ?').get(id);
-  return (row as undefined | { id: number; email: string; name: string; password_hash: string }) ?? null;
+  const row = getDb().prepare('SELECT id, email, name, password_hash, email_verified_at FROM users WHERE id = ?').get(id);
+  return (row as undefined | UserRow) ?? null;
 }
 
 export function updateUserName(userId: number, name: string): void {
@@ -99,4 +102,46 @@ export function updatePassword(userId: number, password: string): void {
 /** After a password change, sign the user out everywhere except the current session. */
 export function deleteOtherSessions(userId: number, keepToken: string): void {
   getDb().prepare('DELETE FROM sessions WHERE user_id = ? AND token != ?').run(userId, keepToken);
+}
+
+// ===== Email verification tokens =====
+// Only a SHA-256 hash of the token is stored; the raw token exists solely in the
+// link that is "emailed" (see lib/email.ts). Tokens are single-use and expire.
+
+function hashToken(raw: string): string {
+  return createHash('sha256').update(raw).digest('hex');
+}
+
+/** Create a fresh verification token for a user, invalidating any previous ones. */
+export function createEmailVerification(userId: number, purpose: EmailPurpose = 'verify_email'): string {
+  const db = getDb();
+  db.prepare('DELETE FROM email_verifications WHERE user_id = ? AND purpose = ?').run(userId, purpose);
+  const token = randomBytes(32).toString('hex');
+  const expires = new Date(Date.now() + VERIFY_TTL_MINUTES * 60_000).toISOString();
+  db.prepare('INSERT INTO email_verifications (token_hash, user_id, purpose, expires_at, created_at) VALUES (?, ?, ?, ?, ?)')
+    .run(hashToken(token), userId, purpose, expires, new Date().toISOString());
+  return token;
+}
+
+/**
+ * Validate and consume a verification token (single-use). On success the user is
+ * marked verified and the token is deleted. Returns the user id or null.
+ */
+export function consumeEmailVerification(raw: string, purpose: EmailPurpose = 'verify_email'): { userId: number } | null {
+  const db = getDb();
+  const tokenHash = hashToken(raw);
+  const row = db.prepare('SELECT user_id, expires_at FROM email_verifications WHERE token_hash = ? AND purpose = ?')
+    .get(tokenHash, purpose) as { user_id: number; expires_at: string } | undefined;
+  if (!row) return null;
+  db.prepare('DELETE FROM email_verifications WHERE token_hash = ?').run(tokenHash);
+  if (new Date(row.expires_at).getTime() < Date.now()) return null;
+  db.prepare('UPDATE users SET email_verified_at = ? WHERE id = ?').run(new Date().toISOString(), row.user_id);
+  return { userId: row.user_id };
+}
+
+/** Whether a user has verified their email address. */
+export function isEmailVerified(userId: number): boolean {
+  const row = getDb().prepare('SELECT email_verified_at FROM users WHERE id = ?').get(userId) as
+    | { email_verified_at: string | null } | undefined;
+  return Boolean(row?.email_verified_at);
 }

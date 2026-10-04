@@ -48,3 +48,11 @@ export const passwordChangeSchema = z.object({
   currentPassword: z.string().min(1).max(128),
   newPassword: z.string().min(8).max(128),
 }).strict();
+
+export const verifySchema = z.object({
+  token: z.string().trim().min(16).max(128).regex(/^[a-f0-9]+$/i, 'invalid token'),
+}).strict();
+
+export const resendSchema = z.object({
+  email: emailField,
+}).strict();

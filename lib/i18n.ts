@@ -18,9 +18,9 @@ export interface Labels {
   age: string; state: string; district: string; income: string; occupation: string;
   gender: string; category: string; student: string; land: string; disability: string;
   find: string; reset: string; eyebrow: string; title: string; title2: string; intro: string;
-  welcome: string; welcomeSub: string; ask: string; send: string; speak: string; stop: string;
-  listening: string; results: string; resultsSub: string; read: string; reading: string;
-  stopReading: string; voice: string; noVoice: string; speed: string; trace: string;
+  welcome: string; welcomeSub: string; ask: string; send: string;  
+   results: string; resultsSub: string;  
+      trace: string;
   demo: string; demoSub: string; privacy: string; warning: string; empty: string; emptySub: string;
   prompts: string[]; documents: string; steps: string; official: string; verified: string;
   unverified: string; likely: string; eligible: string; not_eligible: string; missing: string;
@@ -38,6 +38,9 @@ export interface Labels {
   currentPassword: string; newPassword: string; updatePassword: string;
   passwordUpdated: string; nameUpdated: string;
   install: string; installHint: string; offlineReady: string;
+  // Microphone diagnostics — specific, actionable failure messages.
+     
+     
 }
 
 const en: Labels = {
@@ -51,12 +54,8 @@ const en: Labels = {
   intro: 'Discover government schemes that could support you and your family. Just tell us a little about yourself.',
   welcome: 'Hello! I’m Knock, your welfare navigator.',
   welcomeSub: 'Let’s find the support you deserve. Tell me about yourself — your age, where you live, and what you do. We’ll take it one step at a time.',
-  ask: 'Ask in your own words…', send: 'Send message', speak: 'Speak instead', stop: 'Stop recording',
-  listening: 'Listening… your transcript is editable below.', results: 'Your opportunities',
-  resultsSub: 'A starting point, not a final eligibility decision.', read: 'Read aloud',
-  reading: 'Reading aloud…', stopReading: 'Stop reading', voice: 'Voice',
-  noVoice: 'No voice for this language on this device yet — pick any voice from the list, or install one in your system settings.',
-  speed: 'Speed', trace: 'Behind the conversation', demo: 'Demo mode',
+  ask: 'Ask in your own words…', send: 'Send message', results: 'Your opportunities',
+  resultsSub: 'A starting point, not a final eligibility decision.', trace: 'Behind the conversation', demo: 'Demo mode',
   demoSub: 'No API key needed · rules-based guidance',
   privacy: 'Your details stay in this session. No account needed.',
   warning: 'Preliminary guidance only. Some scheme rules are not modeled; confirm eligibility and current details with the official provider.',
@@ -91,7 +90,7 @@ const en: Labels = {
   install: 'Install app',
   installHint: 'Add Knock to your home screen for fast, offline access.',
   offlineReady: 'Ready to work offline.',
-};
+  };
 
 const hi: Partial<Labels> = {
   nav: 'आपका मार्गदर्शक', how: 'यह कैसे काम करता है', profile: 'आपकी प्रोफ़ाइल',
@@ -103,12 +102,8 @@ const hi: Partial<Labels> = {
   intro: 'अपने और अपने परिवार के लिए सरकारी योजनाएँ खोजें। बस अपने बारे में थोड़ा बताएं।',
   welcome: 'नमस्ते! मैं Knock, आपका कल्याण मार्गदर्शक हूँ।',
   welcomeSub: 'आइए आपके लिए सहायता खोजें। अपनी उम्र, राज्य और काम के बारे में बताएं। हम एक-एक कदम आगे बढ़ेंगे।',
-  ask: 'अपने शब्दों में पूछें…', send: 'संदेश भेजें', speak: 'बोलकर बताएं', stop: 'रिकॉर्डिंग रोकें',
-  listening: 'सुन रहे हैं… नीचे संदेश बदल सकते हैं।', results: 'आपके अवसर',
-  resultsSub: 'शुरुआती मार्गदर्शन, अंतिम पात्रता निर्णय नहीं।', read: 'सुनें', reading: 'पढ़कर सुना रहे हैं…',
-  stopReading: 'सुनना बंद करें', voice: 'आवाज़',
-  noVoice: 'इस भाषा के लिए इस डिवाइस पर अभी बेहतर आवाज़ उपलब्ध नहीं है। ब्राउज़र की डिफ़ॉल्ट आवाज़ उपयोग हो रही है।',
-  speed: 'गति', trace: 'बातचीत के पीछे', demo: 'डेमो मोड', demoSub: 'API कुंजी की जरूरत नहीं · नियम-आधारित मार्गदर्शन',
+  ask: 'अपने शब्दों में पूछें…', send: 'संदेश भेजें', results: 'आपके अवसर',
+  resultsSub: 'शुरुआती मार्गदर्शन, अंतिम पात्रता निर्णय नहीं।', trace: 'बातचीत के पीछे', demo: 'डेमो मोड', demoSub: 'API कुंजी की जरूरत नहीं · नियम-आधारित मार्गदर्शन',
   privacy: 'जानकारी केवल इस सत्र में रहती है। खाता जरूरी नहीं।',
   warning: 'केवल प्रारंभिक मार्गदर्शन। कुछ नियम शामिल नहीं हैं; पात्रता और नवीनतम जानकारी आधिकारिक प्रदाता से जाँचें।',
   empty: 'आपका अगला अवसर यहाँ से शुरू होता है।', emptySub: 'संबंधित योजनाएँ और अगले कदम देखने के लिए जानकारी साझा करें।',
@@ -145,12 +140,8 @@ const te: Partial<Labels> = {
   intro: 'మీ కుటుంబానికి సహాయపడే ప్రభుత్వ పథకాలను కనుగొనండి. మీ గురించి కొంచెం చెప్పండి.',
   welcome: 'నమస్కారం! నేను Knock, మీ సంక్షేమ మార్గదర్శిని.',
   welcomeSub: 'మీకు అర్హమైన సహాయం కనుగొందాం. మీ వయస్సు, నివాసం, వృత్తి గురించి చెప్పండి. మేము ఒక్కో అడుగు ముందుకు వేస్తాము.',
-  ask: 'మీ మాటల్లో అడగండి…', send: 'సందేశం పంపండి', speak: 'మాట్లాడి చెప్పండి', stop: 'రికార్డింగ్ ఆపండి',
-  listening: 'వింటున్నాము… క్రింద సందేశం మార్చవచ్చు.', results: 'మీ అవకాశాలు',
-  resultsSub: 'ప్రారంభ మార్గదర్శనం, తుది అర్హత నిర్ణయం కాదు.', read: 'వినండి', reading: 'చదివి వినిపిస్తున్నాము…',
-  stopReading: 'వినడం ఆపండి', voice: 'స్వరం',
-  noVoice: 'ఈ భాషకు ఈ పరికరంలో ఇంకా మెరుగైన స్వరం అందుబాటులో లేదు. బ్రౌజర్ డిఫాల్ట్ వాడుతున్నాము.',
-  speed: 'వేగం', trace: 'సంభాషణ వెనుక', demo: 'డెమో మోడ్', demoSub: 'API కీ అవసరం లేదు · నియమ-ఆధారిత మార్గదర్శనం',
+  ask: 'మీ మాటల్లో అడగండి…', send: 'సందేశం పంపండి', results: 'మీ అవకాశాలు',
+  resultsSub: 'ప్రారంభ మార్గదర్శనం, తుది అర్హత నిర్ణయం కాదు.', trace: 'సంభాషణ వెనుక', demo: 'డెమో మోడ్', demoSub: 'API కీ అవసరం లేదు · నియమ-ఆధారిత మార్గదర్శనం',
   privacy: 'సమాచారం ఈ సెషన్‌లోనే ఉంటుంది. ఖాతా అవసరం లేదు.',
   warning: 'ప్రాథమిక మార్గదర్శనం మాత్రమే. కొన్ని నియమాలు చేర్చబడలేదు; అర్హత మరియు తాజా వివరాలు అధికారిక ప్రదాతతో ధృవీకరించండి.',
   empty: 'మీ తదుపరి అవకాశం ఇక్కడ మొదలవుతుంది.', emptySub: 'సంబంధిత పథకాలు, పత్రాలు, తదుపరి అడుగులు చూడటానికి వివరాలు పంచుకోండి.',
@@ -187,10 +178,8 @@ const ta: Partial<Labels> = {
   intro: 'உங்கள் குடும்பத்திற்கு உதவும் அரசு திட்டங்களைக் கண்டறியுங்கள். உங்களைப் பற்றி சிறிது சொல்லுங்கள்.',
   welcome: 'வணக்கம்! நான் Knock, உங்கள் நல வழிகாட்டி.',
   welcomeSub: 'உங்களுக்கு உரிய உதவியைக் கண்டறிவோம். உங்கள் வயது, இருப்பிடம், தொழில் பற்றிச் சொல்லுங்கள்.',
-  ask: 'உங்கள் சொற்களில் கேளுங்கள்…', send: 'செய்தி அனுப்பு', speak: 'பேசிச் சொல்லுங்கள்', stop: 'பதிவை நிறுத்து',
-  listening: 'கேட்கிறோம்… கீழே செய்தியை மாற்றலாம்.', results: 'உங்கள் வாய்ப்புகள்',
-  resultsSub: 'தொடக்க வழிகாட்டுதல், இறுதித் தகுதி முடிவு அல்ல.', read: 'கேளுங்கள்',
-  documents: 'தேவையான ஆவணங்கள்', steps: 'விண்ணப்பிக்கும் முறை', official: 'அதிகாரப்பூர்வ இணையதளம்',
+  ask: 'உங்கள் சொற்களில் கேளுங்கள்…', send: 'செய்தி அனுப்பு', results: 'உங்கள் வாய்ப்புகள்',
+  resultsSub: 'தொடக்க வழிகாட்டுதல், இறுதித் தகுதி முடிவு அல்ல.', documents: 'தேவையான ஆவணங்கள்', steps: 'விண்ணப்பிக்கும் முறை', official: 'அதிகாரப்பூர்வ இணையதளம்',
   verified: 'மூல மதிப்பாய்வு தேதி', unverified: 'சரிபார்க்கப்படவில்லை', likely: 'சாத்தியமான பொருத்தம்',
   eligible: 'மாதிரி விதிகள் பூர்த்தி', not_eligible: 'பொருந்தவில்லை', missing: 'இன்னும் தேவையான விவரங்கள்',
   any: 'தேர்ந்தெடு', error: 'கோரிக்கையை முடிக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்.', working: 'உங்களுக்கான உதவியைத் தேடுகிறோம்…',
@@ -212,10 +201,8 @@ const kn: Partial<Labels> = {
   intro: 'ನಿಮ್ಮ ಕುಟುಂಬಕ್ಕೆ ಸಹಾಯ ಮಾಡುವ ಸರ್ಕಾರಿ ಯೋಜನೆಗಳನ್ನು ಹುಡುಕಿ. ನಿಮ್ಮ ಬಗ್ಗೆ ಸ್ವಲ್ಪ ಹೇಳಿ.',
   welcome: 'ನಮಸ್ಕಾರ! ನಾನು Knock, ನಿಮ್ಮ ಕಲ್ಯಾಣ ಮಾರ್ಗದರ್ಶಿ.',
   welcomeSub: 'ನಿಮಗೆ ಅರ್ಹವಾದ ಸಹಾಯವನ್ನು ಹುಡುಕೋಣ. ನಿಮ್ಮ ವಯಸ್ಸು, ವಾಸಸ್ಥಳ, ಉದ್ಯೋಗದ ಬಗ್ಗೆ ಹೇಳಿ.',
-  ask: 'ನಿಮ್ಮ ಮಾತುಗಳಲ್ಲಿ ಕೇಳಿ…', send: 'ಸಂದೇಶ ಕಳುಹಿಸಿ', speak: 'ಮಾತನಾಡಿ ಹೇಳಿ', stop: 'ರೆಕಾರ್ಡಿಂಗ್ ನಿಲ್ಲಿಸಿ',
-  listening: 'ಕೇಳುತ್ತಿದ್ದೇವೆ… ಕೆಳಗೆ ಸಂದೇಶವನ್ನು ಬದಲಾಯಿಸಬಹುದು.', results: 'ನಿಮ್ಮ ಅವಕಾಶಗಳು',
-  resultsSub: 'ಆರಂಭಿಕ ಮಾರ್ಗದರ್ಶನ, ಅಂತಿಮ ಅರ್ಹತಾ ನಿರ್ಧಾರವಲ್ಲ.', read: 'ಕೇಳಿ',
-  documents: 'ಬೇಕಾದ ದಾಖಲೆಗಳು', steps: 'ಅರ್ಜಿ ಹಾಕುವುದು ಹೇಗೆ', official: 'ಅಧಿಕೃತ ವೆಬ್‌ಸೈಟ್',
+  ask: 'ನಿಮ್ಮ ಮಾತುಗಳಲ್ಲಿ ಕೇಳಿ…', send: 'ಸಂದೇಶ ಕಳುಹಿಸಿ', results: 'ನಿಮ್ಮ ಅವಕಾಶಗಳು',
+  resultsSub: 'ಆರಂಭಿಕ ಮಾರ್ಗದರ್ಶನ, ಅಂತಿಮ ಅರ್ಹತಾ ನಿರ್ಧಾರವಲ್ಲ.', documents: 'ಬೇಕಾದ ದಾಖಲೆಗಳು', steps: 'ಅರ್ಜಿ ಹಾಕುವುದು ಹೇಗೆ', official: 'ಅಧಿಕೃತ ವೆಬ್‌ಸೈಟ್',
   verified: 'ಮೂಲ ಪರಿಶೀಲನಾ ದಿನಾಂಕ', unverified: 'ಪರಿಶೀಲಿಸಲಾಗಿಲ್ಲ', likely: 'ಸಾಧ್ಯವಾದ ಹೊಂದಾಣಿಕೆ',
   eligible: 'ಮಾದರಿ ನಿಯಮಗಳು ಪೂರ್ಣ', not_eligible: 'ಹೊಂದುತ್ತಿಲ್ಲ', missing: 'ಇನ್ನೂ ಬೇಕಾದ ವಿವರಗಳು',
   any: 'ಆಯ್ಕೆಮಾಡಿ', error: 'ವಿನಂತಿಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲಾಗಲಿಲ್ಲ. ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.', working: 'ನಿಮಗಾಗಿ ಸಹಾಯ ಹುಡುಕುತ್ತಿದ್ದೇವೆ…',
@@ -237,10 +224,8 @@ const mr: Partial<Labels> = {
   intro: 'तुमच्या आणि कुटुंबासाठी मदत करणाऱ्या सरकारी योजना शोधा. तुमच्याबद्दल थोडे सांगा.',
   welcome: 'नमस्कार! मी Knock, तुमचा कल्याण मार्गदर्शक.',
   welcomeSub: 'तुम्हाला मिळणारी मदत शोधूया. तुमचे वय, राहण्याचे ठिकाण, व्यवसाय सांगा.',
-  ask: 'तुमच्या शब्दांत विचारा…', send: 'संदेश पाठवा', speak: 'बोलून सांगा', stop: 'रेकॉर्डिंग थांबवा',
-  listening: 'ऐकत आहोत… खाली संदेश बदलता येतो.', results: 'तुमच्या संधी',
-  resultsSub: 'सुरुवातीचे मार्गदर्शन, अंतिम पात्रता निर्णय नाही.', read: 'ऐका',
-  documents: 'लागणारे कागदपत्रे', steps: 'अर्ज कसा करावा', official: 'अधिकृत वेबसाइट',
+  ask: 'तुमच्या शब्दांत विचारा…', send: 'संदेश पाठवा', results: 'तुमच्या संधी',
+  resultsSub: 'सुरुवातीचे मार्गदर्शन, अंतिम पात्रता निर्णय नाही.', documents: 'लागणारे कागदपत्रे', steps: 'अर्ज कसा करावा', official: 'अधिकृत वेबसाइट',
   verified: 'स्रोत पडताळणी दिनांक', unverified: 'पडताळले नाही', likely: 'संभाव्य जुळणार',
   eligible: 'नमुना नियम पूर्ण', not_eligible: 'जुळत नाही', missing: 'अजून लागणारी माहिती',
   any: 'निवडा', error: 'विनंती पूर्ण करता आली नाही. पुन्हा प्रयत्न करा.', working: 'तुमच्यासाठी मदत शोधत आहोत…',
@@ -262,10 +247,8 @@ const bn: Partial<Labels> = {
   intro: 'আপনার ও পরিবারের সহায়ক সরকারি প্রকল্প খুঁজুন। নিজের সম্পর্কে সামান্য বলুন।',
   welcome: 'নমস্কার! আমি Knock, আপনার কল্যাণ পথপ্রদর্শক।',
   welcomeSub: 'আপনার প্রাপ্য সহায়তা খুঁজে নিই। আপনার বয়স, ঠিকানা, পেশা বলুন।',
-  ask: 'নিজের ভাষায় জিজ্ঞাসা করুন…', send: 'বার্তা পাঠান', speak: 'বলে বলুন', stop: 'রেকর্ডিং বন্ধ করুন',
-  listening: 'শুনছি… নিচে বার্তা বদলানো যায়।', results: 'আপনার সুযোগ',
-  resultsSub: 'প্রাথমিক নির্দেশনা, চূড়ান্ত যোগ্যতার সিদ্ধান্ত নয়।', read: 'শুনুন',
-  documents: 'প্রয়োজনীয় কাগজপত্র', steps: 'আবেদন পদ্ধতি', official: 'সরকারি ওয়েবসাইট',
+  ask: 'নিজের ভাষায় জিজ্ঞাসা করুন…', send: 'বার্তা পাঠান', results: 'আপনার সুযোগ',
+  resultsSub: 'প্রাথমিক নির্দেশনা, চূড়ান্ত যোগ্যতার সিদ্ধান্ত নয়।', documents: 'প্রয়োজনীয় কাগজপত্র', steps: 'আবেদন পদ্ধতি', official: 'সরকারি ওয়েবসাইট',
   verified: 'উৎস পর্যালোচনার তারিখ', unverified: 'যাচাই হয়নি', likely: 'সম্ভাব্য মিল',
   eligible: 'মডেল নিয়ম পূর্ণ', not_eligible: 'মেলে না', missing: 'এখনও প্রয়োজনীয় তথ্য',
   any: 'নির্বাচন করুন', error: 'অনুরোধ সম্পন্ন হয়নি। আবার চেষ্টা করুন।', working: 'আপনার জন্য সহায়তা খুঁজছি…',
@@ -287,10 +270,8 @@ const gu: Partial<Labels> = {
   intro: 'તમારા અને કુટુંબ માટે મદદરૂપ સરકારી યોજનાઓ શોધો. તમારા વિશે થોડું કહો.',
   welcome: 'નમસ્કાર! હું Knock, તમારો કલ્યાણ માર્ગદર્શક.',
   welcomeSub: 'તમને મળવાપાત્ર મદદ શોધીએ. તમારી ઉંમર, રહેઠાણ, વ્યવસાય કહો.',
-  ask: 'તમારા શબ્દોમાં પૂછો…', send: 'સંદેશ મોકલો', speak: 'બોલીને કહો', stop: 'રેકોર્ડિંગ બંધ કરો',
-  listening: 'સાંભળી રહ્યા છીએ… નીચે સંદેશ બદલી શકાય છે.', results: 'તમારી તકો',
-  resultsSub: 'પ્રારંભિક માર્ગદર્શન, અંતિમ પાત્રતાનો નિર્ણય નહીં.', read: 'સાંભળો',
-  documents: 'જરૂરી દસ્તાવેજો', steps: 'અરજી કેવી રીતે કરવી', official: 'સત્તાવાર વેબસાઇટ',
+  ask: 'તમારા શબ્દોમાં પૂછો…', send: 'સંદેશ મોકલો', results: 'તમારી તકો',
+  resultsSub: 'પ્રારંભિક માર્ગદર્શન, અંતિમ પાત્રતાનો નિર્ણય નહીં.', documents: 'જરૂરી દસ્તાવેજો', steps: 'અરજી કેવી રીતે કરવી', official: 'સત્તાવાર વેબસાઇટ',
   verified: 'સ્રોત સમીક્ષા તારીખ', unverified: 'ચકાસાયેલ નથી', likely: 'સંભવિત મેળ',
   eligible: 'મોડેલ નિયમો પૂર્ણ', not_eligible: 'મેળ ખાતું નથી', missing: 'હજી જરૂરી માહિતી',
   any: 'પસંદ કરો', error: 'વિનંતી પૂર્ણ થઈ શકી નથી. ફરી પ્રયાસ કરો.', working: 'તમારા માટે મદદ શોધી રહ્યા છીએ…',

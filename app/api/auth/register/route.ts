@@ -1,13 +1,13 @@
 import { NextResponse } from 'next/server';
 import { readJsonBody, sameOrigin, throttle } from '@/lib/api';
 import { registerSchema } from '@/lib/validation';
-import { createSession, createUser, findUserByEmail, SESSION_COOKIE, sessionCookieOptions } from '@/lib/auth';
+import { createEmailVerification, createUser, findUserByEmail } from '@/lib/auth';
+import { sendVerificationEmail } from '@/lib/email';
 import { getDb } from '@/lib/db';
+import type { RegisterResponse } from '@/lib/contracts';
 
 export const runtime = 'nodejs';
 export const maxDuration = 15;
-
-const ok = (user: { id: number; name: string; email: string }) => NextResponse.json({ user }, { headers: { 'Cache-Control': 'no-store' } });
 
 export async function POST(request: Request) {
   if (!sameOrigin(request)) return NextResponse.json({ error: 'Cross-origin request rejected.' }, { status: 403 });
@@ -21,13 +21,15 @@ export async function POST(request: Request) {
   const { name, email, password } = parsed.data;
   try {
     if (findUserByEmail(email)) return NextResponse.json({ error: 'That email is already registered. Try signing in instead.' }, { status: 409 });
+    // Accounts start unverified. The address must be confirmed before sign-in.
     const user = createUser(email, name, password);
     // Seed an empty profile row so GET /api/profile is always defined.
     getDb().prepare('INSERT INTO profiles (user_id, profile_json, language, updated_at) VALUES (?, ?, ?, ?)')
       .run(user.id, JSON.stringify({}), 'en', new Date().toISOString());
-    const response = ok(user);
-    response.cookies.set(SESSION_COOKIE, createSession(user.id), sessionCookieOptions);
-    return response;
+    const token = createEmailVerification(user.id);
+    const { devLink } = await sendVerificationEmail(email, token);
+    const response: RegisterResponse = { status: 'verification_required', email, devLink };
+    return NextResponse.json(response, { headers: { 'Cache-Control': 'no-store' } });
   } catch {
     return NextResponse.json({ error: 'Could not create the account. Please try again.' }, { status: 500 });
   }

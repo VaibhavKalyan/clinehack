@@ -70,3 +70,29 @@ export interface ChatResponse {
   mode: 'demo' | 'live';
   missingFields: (keyof Profile)[];
 }
+
+/** Token purposes we store hashed in the database. */
+export type EmailPurpose = 'verify_email';
+
+/**
+ * Register always returns this until the address is verified. `devLink` is only
+ * present outside production so a tester can complete verification without a
+ * real mail provider; it is `null` in production.
+ */
+export interface RegisterResponse {
+  status: 'verification_required';
+  email: string;
+  devLink: string | null;
+}
+
+/** Response from POST /api/auth/resend — always generic to avoid enumeration. */
+export interface ResendResponse {
+  status: 'sent';
+  devLink: string | null;
+}
+
+/** Response from POST /api/auth/verify on success. */
+export interface VerifyResponse {
+  ok: true;
+  email: string;
+}

@@ -22,6 +22,10 @@ export async function POST(request: Request) {
     if (!user || !verifyPassword(password, user.password_hash)) {
       return NextResponse.json({ error: 'Incorrect email or password.' }, { status: 401 });
     }
+    // Password is correct, but the address must be confirmed before sign-in.
+    if (!user.email_verified_at) {
+      return NextResponse.json({ error: 'Please verify your email address before signing in.', needsVerification: true }, { status: 403 });
+    }
     const response = NextResponse.json({ user: { id: user.id, name: user.name, email: user.email } }, { headers: { 'Cache-Control': 'no-store' } });
     response.cookies.set(SESSION_COOKIE, createSession(user.id), sessionCookieOptions);
     return response;
