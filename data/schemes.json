@@ -275,5 +275,483 @@
     ],
     "rules": [],
     "coverage": "partial"
+  },
+  {
+    "id": "nsp-csss",
+    "name": "Central Sector Scheme of Scholarship for College and University Students",
+    "description": "Merit scholarship for college and university students, applied through the National Scholarship Portal. Board-exam percentage thresholds, approved course and institution lists, family income proof and renewal performance are not modeled; student status, a modeled income limit and age are only a first screen.",
+    "benefit": "Official portal describes yearly financial assistance for eligible students; confirm the current amount, course lists and renewal terms on the portal.",
+    "source_url": "https://scholarships.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Previous board/university marksheets",
+      "Income certificate as required by the portal",
+      "Bank account linked to Aadhaar"
+    ],
+    "steps": [
+      "Read the scheme guidelines on the National Scholarship Portal.",
+      "Register and apply within the announced window; keep renewal deadlines in mind.",
+      "Track verification at institute, district and state levels."
+    ],
+    "rules": [
+      { "field": "isStudent", "op": "eq", "value": true },
+      { "field": "annualIncome", "op": "lte", "value": 800000 },
+      { "field": "age", "op": "gte", "value": 17 },
+      { "field": "age", "op": "lte", "value": 25 }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nsp-pms-sc",
+    "name": "Post-Matric Scholarship for Scheduled Caste Students",
+    "description": "Post-matric support for SC students, applied through the National Scholarship Portal. Caste certificate verification, class and course approvals, institute recognition and state income slabs are not modeled; the screen only checks SC category and student status.",
+    "benefit": "Official portal describes course-fee and maintenance assistance for eligible students; amounts vary by course and state - confirm on the portal.",
+    "source_url": "https://scholarships.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Valid caste certificate",
+      "Previous qualifying exam marksheet",
+      "Bank account linked to Aadhaar"
+    ],
+    "steps": [
+      "Check the scheme guidelines and income slab on the National Scholarship Portal.",
+      "Apply on the portal and complete institute verification.",
+      "Track application status and renewal requirements each year."
+    ],
+    "rules": [
+      { "field": "category", "op": "eq", "value": "SC" },
+      { "field": "isStudent", "op": "eq", "value": true }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nsp-pms-obc",
+    "name": "Post-Matric Scholarship for Other Backward Class Students",
+    "description": "Post-matric support for OBC students, applied through the National Scholarship Portal. Caste certificate verification, income slabs, course and institute recognition are not modeled; the screen only checks OBC category and student status.",
+    "benefit": "Official portal describes course-fee and maintenance assistance for eligible students; amounts vary by course and state - confirm on the portal.",
+    "source_url": "https://scholarships.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Valid OBC caste certificate",
+      "Income certificate as required by the portal",
+      "Previous qualifying exam marksheet"
+    ],
+    "steps": [
+      "Check the scheme guidelines and income slab on the National Scholarship Portal.",
+      "Apply on the portal and complete institute verification.",
+      "Track application status and renewal requirements each year."
+    ],
+    "rules": [
+      { "field": "category", "op": "eq", "value": "OBC" },
+      { "field": "isStudent", "op": "eq", "value": true }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nsp-pms-minority",
+    "name": "Post-Matric Scholarship for Students from Minority Communities",
+    "description": "Post-matric support for students from notified minority communities, applied through the National Scholarship Portal. Community and religion declaration is required and is NOT captured in this profile; the screen only checks student status, so confirm minority-certificate eligibility officially.",
+    "benefit": "Official portal describes course-fee and maintenance assistance for eligible students; confirm current amounts and terms on the portal.",
+    "source_url": "https://scholarships.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Minority community declaration/certificate as the portal requires",
+      "Income certificate as required by the portal",
+      "Previous qualifying exam marksheet"
+    ],
+    "steps": [
+      "Check whether your community is notified for this scheme on the portal.",
+      "Apply on the National Scholarship Portal within the announced window.",
+      "Track verification at institute and state levels."
+    ],
+    "rules": [
+      { "field": "isStudent", "op": "eq", "value": true }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nmmss",
+    "name": "National Means-cum-Merit Scholarship",
+    "description": "Merit-cum-means scholarship for classes 9 to 12 to reduce dropouts, applied through the National Scholarship Portal. Class level, state selection test, school recognition, board performance and renewal conditions are not modeled; income limit and student status are a first screen only.",
+    "benefit": "Official portal describes a yearly scholarship amount for selected students; confirm the current amount and selection process.",
+    "source_url": "https://scholarships.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Previous class marksheets",
+      "Income certificate as required by the portal",
+      "School enrolment details"
+    ],
+    "steps": [
+      "Confirm the class level and state selection test details on the portal.",
+      "Apply through school/portal within the announced window.",
+      "Track selection and renewal requirements each year."
+    ],
+    "rules": [
+      { "field": "isStudent", "op": "eq", "value": true },
+      { "field": "annualIncome", "op": "lte", "value": 350000 },
+      { "field": "age", "op": "gte", "value": 12 },
+      { "field": "age", "op": "lte", "value": 19 }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nsp-topclass-sc",
+    "name": "Top Class Education Scheme for SC Students",
+    "description": "Supports SC students admitted to notified top-class institutions, applied through the National Scholarship Portal. Admission to a notified institution, first-year admission conditions, course lists and income proof are not modeled; category and student status are a first screen only.",
+    "benefit": "Official portal describes tuition and living support for eligible students in notified institutions; confirm current amounts and the institution list.",
+    "source_url": "https://scholarships.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Valid SC caste certificate",
+      "Admission proof from a notified institution",
+      "Income certificate as required by the portal"
+    ],
+    "steps": [
+      "Check whether your institution is on the notified list.",
+      "Apply on the National Scholarship Portal with admission proof.",
+      "Track verification and continuing eligibility each year."
+    ],
+    "rules": [
+      { "field": "category", "op": "eq", "value": "SC" },
+      { "field": "isStudent", "op": "eq", "value": true }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "pm-yasasvi",
+    "name": "PM Young Achievers Scholarship Award Scheme (YASASVI)",
+    "description": "Scholarships for OBC, EBC and DNT/SNT students in identified top-class schools and colleges. EBC and DNT/SNT definitions are not represented in this profile (OBC/EWS are approximate category mappings), and income limits, the YASASVI entrance test and school identification are not modeled; official category proof decides.",
+    "benefit": "Official page describes scholarships for selected OBC/EBC/DNT students; confirm current amounts and the test process.",
+    "source_url": "https://socialjustice.gov.in/schemes/101",
+    "last_verified": null,
+    "documents": [
+      "Category certificate as officially defined for this scheme",
+      "Income certificate as the scheme requires",
+      "School/college admission details"
+    ],
+    "steps": [
+      "Read the PM-YASASVI guidelines on the Department of Social Justice site.",
+      "Check the entrance test (where applicable) and notified institutions.",
+      "Apply through the announced official channel and track status."
+    ],
+    "rules": [
+      { "field": "isStudent", "op": "eq", "value": true },
+      { "field": "category", "op": "in", "value": ["OBC", "EWS"] }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "inspire-she",
+    "name": "INSPIRE Scholarship for Higher Education (SHE)",
+    "description": "Department of Science and Technology scholarship for students pursuing natural/basic science degrees after class 12. Top board-exam percentile or national exam ranks, eligible course lists and continuing performance conditions are not modeled; student status and age are a first screen only.",
+    "benefit": "Official portal describes a yearly scholarship for selected students; confirm the current amount and eligibility terms.",
+    "source_url": "https://online-inspire.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Class 12 board performance proof",
+      "Admission proof for an eligible science course",
+      "Bank account linked to Aadhaar"
+    ],
+    "steps": [
+      "Check eligible courses and merit routes on the INSPIRE portal.",
+      "Register and apply within the announced window.",
+      "Track selection and annual renewal performance requirements."
+    ],
+    "rules": [
+      { "field": "isStudent", "op": "eq", "value": true },
+      { "field": "age", "op": "gte", "value": 17 },
+      { "field": "age", "op": "lte", "value": 22 }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nsp-pms-disability",
+    "name": "Post-Matric Scholarship for Students with Disabilities",
+    "description": "Post-matric support for students with benchmark disabilities, applied through the National Scholarship Portal. Disability certificate (UDID) and its percentage, income slabs, course and institute recognition are not modeled; the screen only checks disability and student status.",
+    "benefit": "Official portal describes maintenance and course support for eligible students; confirm current amounts and terms.",
+    "source_url": "https://scholarships.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Disability certificate/UDID as the portal requires",
+      "Income certificate as required by the portal",
+      "Previous qualifying exam marksheet"
+    ],
+    "steps": [
+      "Check the disability-percentage and income requirements on the portal.",
+      "Apply on the National Scholarship Portal within the announced window.",
+      "Track verification at institute and state levels."
+    ],
+    "rules": [
+      { "field": "hasDisability", "op": "eq", "value": true },
+      { "field": "isStudent", "op": "eq", "value": true }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "up-scholarship",
+    "name": "Uttar Pradesh Scholarship and Fee Reimbursement",
+    "description": "State scholarship and fee-reimbursement system for UP students across categories and classes. UP domicile, category and income certificates, class-level slabs, institute verification and renewal rules are not modeled; the screen only checks student status and state.",
+    "benefit": "State portal describes fee reimbursement and maintenance grants for eligible students; confirm current amounts, categories and deadlines.",
+    "source_url": "https://scholarship.up.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "UP domicile proof",
+      "Category and income certificates as the portal requires",
+      "Previous marksheets and bank account details"
+    ],
+    "steps": [
+      "Read the notice board and guidelines on the UP scholarship portal.",
+      "Register, fill the student profile and submit at your institute.",
+      "Track verification status on the portal each academic year."
+    ],
+    "rules": [
+      { "field": "isStudent", "op": "eq", "value": true },
+      { "field": "state", "op": "eq", "value": "Uttar Pradesh" }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "telangana-epass",
+    "name": "Telangana Post-Matric Scholarships (ePASS)",
+    "description": "Telangana post-matric scholarship and fee reimbursement via the ePASS system. Domicile, caste/income certificates issued in-state, ration-card linkage, attendance, class and course approvals are not modeled; the screen only checks student status and state.",
+    "benefit": "State portal describes tuition reimbursement and maintenance support for eligible students; confirm current terms locally.",
+    "source_url": "https://telanganaepass.cgg.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Telangana domicile and caste/income certificates",
+      "Aadhaar-linked bank account and ration-card details as required",
+      "Previous marksheets and admission proof"
+    ],
+    "steps": [
+      "Check the latest notification and eligibility list on the ePASS portal.",
+      "Register and apply online; complete college verification.",
+      "Track scholarship release status on the portal."
+    ],
+    "rules": [
+      { "field": "isStudent", "op": "eq", "value": true },
+      { "field": "state", "op": "eq", "value": "Telangana" }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "karnataka-ssp",
+    "name": "Karnataka State Scholarship (SSP)",
+    "description": "Karnataka pre- and post-matric scholarships through the State Scholarship Portal. Domicile, caste and income certificates issued in-state, class and course approvals and renewal rules are not modeled; the screen only checks student status and state.",
+    "benefit": "State portal describes fee and maintenance support for eligible students; confirm current schemes, amounts and deadlines.",
+    "source_url": "https://ssp.postmatric.karnataka.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Karnataka domicile, caste and income certificates",
+      "Aadhaar-linked bank account details",
+      "Previous marksheets and admission proof"
+    ],
+    "steps": [
+      "Check the scheme list and guidelines on the Karnataka SSP portal.",
+      "Register, verify eKYC and apply through your institute.",
+      "Track approval and disbursement status on the portal."
+    ],
+    "rules": [
+      { "field": "isStudent", "op": "eq", "value": true },
+      { "field": "state", "op": "eq", "value": "Karnataka" }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "mahadbt",
+    "name": "Maharashtra Scholarships (Aaple Sarkar DBT)",
+    "description": "Maharashtra scholarships and welfare payments through the state Direct Benefit Transfer portal. Maharashtra domicile, caste and income certificates (Caste Validity where applicable), class and course approvals and renewal rules are not modeled; the screen only checks student status and state.",
+    "benefit": "State portal describes multiple scholarships with direct transfer for eligible students; confirm current schemes, amounts and deadlines.",
+    "source_url": "https://mahadbt.maharashtra.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Maharashtra domicile, caste and income certificates",
+      "Aadhaar-linked bank account details",
+      "Previous marksheets and admission proof"
+    ],
+    "steps": [
+      "Create an Aaple Sarkar account and check eligible schemes on the DBT portal.",
+      "Apply online and complete institute verification.",
+      "Track approval and payment status on the portal."
+    ],
+    "rules": [
+      { "field": "isStudent", "op": "eq", "value": true },
+      { "field": "state", "op": "eq", "value": "Maharashtra" }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nsap-oldage",
+    "name": "National Social Assistance - Old Age Pension (IGNOAPS)",
+    "description": "Centrally sponsored basic pension for senior citizens below the poverty line, delivered under state rules. BPL/destitution criteria, state age thresholds and top-ups (some states start at a higher age), and proof requirements are not modeled; only the lowest common age threshold is used.",
+    "benefit": "Official page describes a monthly central assistance amount for eligible beneficiaries; states may add top-ups - confirm locally.",
+    "source_url": "https://nsap.nic.in/",
+    "last_verified": null,
+    "documents": [
+      "Age proof (birth certificate, school leaving certificate or Aadhaar)",
+      "BPL/destitution proof as the state requires",
+      "Bank or post-office account details"
+    ],
+    "steps": [
+      "Check your state's age and BPL rules on the NSAP portal or at a local office.",
+      "Apply through the municipal/gram panchayat or state social-welfare office.",
+      "Track sanction and monthly payment status."
+    ],
+    "rules": [
+      { "field": "age", "op": "gte", "value": 60 }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nsap-widow",
+    "name": "National Social Assistance - Widow Pension (IGNWPS)",
+    "description": "Centrally sponsored basic pension for BPL widows, delivered under state rules. BPL/destitution criteria, state age thresholds and proof requirements are not modeled; only the lowest common age threshold and gender are used.",
+    "benefit": "Official page describes a monthly central assistance amount for eligible beneficiaries; states may add top-ups - confirm locally.",
+    "source_url": "https://nsap.nic.in/",
+    "last_verified": null,
+    "documents": [
+      "Age and widowhood proof as the state requires",
+      "BPL/destitution proof",
+      "Bank or post-office account details"
+    ],
+    "steps": [
+      "Check your state's age and BPL rules on the NSAP portal or at a local office.",
+      "Apply through the municipal/gram panchayat or state social-welfare office.",
+      "Track sanction and monthly payment status."
+    ],
+    "rules": [
+      { "field": "gender", "op": "eq", "value": "female" },
+      { "field": "age", "op": "gte", "value": 40 }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "nsap-disability",
+    "name": "National Social Assistance - Disability Pension (IGNDPS)",
+    "description": "Centrally sponsored basic pension for BPL persons with disabilities, delivered under state rules. The benchmark disability percentage (commonly severe), medical certification, BPL criteria and state thresholds are not modeled; only disability status and the lowest common age are used.",
+    "benefit": "Official page describes a monthly central assistance amount for eligible beneficiaries; states may add top-ups - confirm locally.",
+    "source_url": "https://nsap.nic.in/",
+    "last_verified": null,
+    "documents": [
+      "Disability certificate/UDID with percentage as the state requires",
+      "Age and BPL/destitution proof",
+      "Bank or post-office account details"
+    ],
+    "steps": [
+      "Check the disability-percentage and BPL rules on the NSAP portal or at a local office.",
+      "Apply through the municipal/gram panchayat or state social-welfare office.",
+      "Track sanction and monthly payment status."
+    ],
+    "rules": [
+      { "field": "hasDisability", "op": "eq", "value": true },
+      { "field": "age", "op": "gte", "value": 18 }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "pmjay",
+    "name": "Ayushman Bharat PM-JAY Health Cover",
+    "description": "Cashless secondary and tertiary hospitalisation cover for eligible families identified through SECC and occupational/deprivation criteria. Those identification lists, state inclusion rules and empanelled-hospital checks are not modeled; no profile rule can screen this - confirm with the official portal or a CSC.",
+    "benefit": "Official portal describes health coverage up to a defined annual amount per eligible family; confirm current terms and the hospital list.",
+    "source_url": "https://pmjay.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Aadhaar or prescribed identity proof",
+      "Ration card or SECC details as the portal requires",
+      "Active mobile number for verification"
+    ],
+    "steps": [
+      "Check family eligibility on the PM-JAY portal (Am I Eligible) or at a CSC.",
+      "Complete e-KYC and collect the Ayushman card.",
+      "Verify the hospital is empanelled before admission."
+    ],
+    "rules": [],
+    "coverage": "partial"
+  },
+  {
+    "id": "pmay-gramin",
+    "name": "Pradhan Mantri Awas Yojana - Gramin",
+    "description": "Rural housing assistance for eligible households without a pucca house, identified through SECC and state verification. Household selection, waitlist priority and construction-stage payments are not modeled; no profile rule can screen this - confirm with the official portal or gram panchayat.",
+    "benefit": "Official portal describes construction assistance for approved households; confirm current terms with local authorities.",
+    "source_url": "https://pmayg.nic.in/",
+    "last_verified": null,
+    "documents": [
+      "SECC/household survey details as recorded",
+      "Aadhaar and bank account details",
+      "Land or homestead proof as the state requires"
+    ],
+    "steps": [
+      "Check whether your household appears in the PMAY-G beneficiary list.",
+      "Confirm with the gram panchayat or block office.",
+      "Follow construction-stage verification and payment steps as instructed."
+    ],
+    "rules": [],
+    "coverage": "partial"
+  },
+  {
+    "id": "pmfby",
+    "name": "Pradhan Mantri Fasal Bima Yojana",
+    "description": "Subsidised crop insurance for farmers growing notified crops in notified areas. Crop and season notifications, land records, sowing-date proof, cut-off dates and claim/inspection processes are not modeled; land ownership is only a first screen.",
+    "benefit": "Official portal describes insurance cover with a subsidised farmer premium; confirm crops, season and claim terms.",
+    "source_url": "https://pmfby.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Land records or tenancy proof as applicable",
+      "Sowing certificate/plantation declaration within cut-off dates",
+      "Bank account linked to Aadhaar"
+    ],
+    "steps": [
+      "Check whether your crop and area are notified this season.",
+      "Enroll through a bank, CSC or the PMFBY portal/app before the cut-off date.",
+      "Report sowing details and any loss within the prescribed timelines."
+    ],
+    "rules": [
+      { "field": "ownsLand", "op": "eq", "value": true }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "kisan-credit-card",
+    "name": "Kisan Credit Card",
+    "description": "Short-term crop credit for farmers through banks, with variants for fishery and animal-husbandry activities. Bank credit appraisal, land records, scale-of-finance and repayment terms are not modeled; land ownership is only a first screen.",
+    "benefit": "Official farmer portal describes timely credit access for farmers; interest subvention and limits follow RBI/bank rules - confirm with a bank.",
+    "source_url": "https://farmer.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Land records or tenancy/cultivation proof as the bank requires",
+      "Identity proof (Aadhaar) and photograph",
+      "Crop plan and existing loan details if any"
+    ],
+    "steps": [
+      "Read the KCC guidelines and FAQ on the farmer portal.",
+      "Apply at a bank branch, CSC or through the bank's online channel.",
+      "Review the sanctioned limit, interest terms and repayment schedule."
+    ],
+    "rules": [
+      { "field": "ownsLand", "op": "eq", "value": true }
+    ],
+    "coverage": "partial"
+  },
+  {
+    "id": "eshram",
+    "name": "e-Shram Registration for Unorganised Workers",
+    "description": "National registration of unorganised workers that unlocks access to multiple welfare benefits. Registration is not itself a benefit; the unorganised-worker definition, occupation proof and linking to specific schemes are not modeled - only the working-age band is screened.",
+    "benefit": "Official portal describes a worker card and access to welfare schemes for registered workers; confirm which benefits are currently linked.",
+    "source_url": "https://eshram.gov.in/",
+    "last_verified": null,
+    "documents": [
+      "Aadhaar and linked mobile number",
+      "Bank account details",
+      "Occupation details as declared"
+    ],
+    "steps": [
+      "Read the registration guide on the e-Shram portal.",
+      "Self-register on the portal or at a CSC with Aadhaar OTP verification.",
+      "Keep the e-Shram card details ready for scheme applications."
+    ],
+    "rules": [
+      { "field": "age", "op": "gte", "value": 16 },
+      { "field": "age", "op": "lte", "value": 59 }
+    ],
+    "coverage": "partial"
   }
 ]

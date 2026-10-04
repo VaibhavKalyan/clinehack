@@ -38,7 +38,14 @@ test('Female case and whitespace normalize at runtime', () => assert.equal(match
 test('String false is unknown, not a boolean', () => assert.ok(match('pm-kisan',{...base,ownsLand:'false' as unknown as boolean}).missingFields.includes('ownsLand')));
 test('All curated entries remain partial', () => assert.ok(schemes.every(s=>s.coverage==='partial')));
 test('No invented verification dates', () => assert.ok(schemes.every(s=>s.last_verified===null)));
-test('Curated dataset has ten schemes', () => assert.equal(schemes.length,10));
+test('Curated dataset meets the target size and includes anchor schemes', () => {
+  assert.ok(schemes.length >= 30, `expected at least 30 schemes, found ${schemes.length}`);
+  const ids = schemes.map(s => s.id);
+  assert.equal(new Set(ids).size, ids.length, 'scheme ids must be unique');
+  for (const anchor of ['nsp-csss', 'nsp-pms-sc', 'nsp-pms-obc', 'nmmss', 'pm-yasasvi', 'inspire-she', 'up-scholarship', 'telangana-epass', 'karnataka-ssp', 'mahadbt', 'nsap-oldage', 'nsap-widow', 'nsap-disability', 'pm-kisan']) {
+    assert.ok(ids.includes(anchor), `missing anchor scheme ${anchor}`);
+  }
+});
 test('Dataset validates', () => assert.deepEqual(validateData(schemes),[]));
 test('No profile returns approved eligibility', () => assert.ok(matchSchemes({}).every(m=>m.status!=='eligible')));
 test('Annual income is not turnover or monthly-income eligibility', () => assert.equal(match('nps-traders',{...base,annualIncome:20000000}).status,'likely'));
